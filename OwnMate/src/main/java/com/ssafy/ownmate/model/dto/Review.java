@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+//이거 들어갔니?
 public class Review {
 	private String reviewVideoId;
 	private int reviewNo;
@@ -16,4 +17,5 @@ public class Review {
 	private int reviewViewCnt;
 	private int reviewLikeCnt;
 	private int reviewDislikeCnt;
+	private int review_pw;
 }
