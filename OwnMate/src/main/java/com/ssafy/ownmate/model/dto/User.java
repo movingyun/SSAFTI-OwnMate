@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+//User 들어갔니?
 public class User {
 	private String userId;
 	private String userPw;
