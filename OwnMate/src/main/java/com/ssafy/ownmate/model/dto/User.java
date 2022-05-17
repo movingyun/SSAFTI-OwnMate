@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 //User 들어갔니?
 //유경 수정될까?
+//마지막 확인
 public class User {
 	private String userId;
 	private String userPw;
