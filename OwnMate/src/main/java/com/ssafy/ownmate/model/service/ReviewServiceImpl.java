@@ -10,11 +10,11 @@ import com.ssafy.ownmate.model.dao.reviewDao;
 import com.ssafy.ownmate.model.dto.Review;
 
 @Service
-public class ReviewServiceImpl implements ReviewService{
+public class ReviewServiceImpl implements ReviewService {
 
 	@Autowired
 	private reviewDao reviewDao;
-	
+
 	@Override
 	public List<Review> getReviewList(HashMap<String, String> params) {
 		return reviewDao.selectReviewList(params);
@@ -36,19 +36,19 @@ public class ReviewServiceImpl implements ReviewService{
 		Review originReview = reviewDao.selectReviewByNo(review.getReviewNo());
 		originReview.setReviewTitle(review.getReviewTitle());
 		originReview.setReviewContent(review.getReviewContent());
-		//이거의 결과는 true false
-		return reviewDao.updateReview(originReview)==1;
+		// 이거의 결과는 true false
+		return reviewDao.updateReview(originReview) == 1;
 	}
 
 	@Override
 	public boolean removeReview(int reviewNo) {
-		return reviewDao.deleteReview(reviewNo)==1;
+		return reviewDao.deleteReview(reviewNo) == 1;
 	}
 
 	@Override
 	public void updateCnt(int reviewNo) {
 		Review review = reviewDao.selectReviewByNo(reviewNo);
-		review.setReviewViewCnt(review.getReviewViewCnt()+1);
+		review.setReviewViewCnt(review.getReviewViewCnt() + 1);
 		reviewDao.updateReview(review);
 	}
 
@@ -56,14 +56,14 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public void updateLikeCnt(int reviewNo) {
 		Review review = reviewDao.selectReviewByNo(reviewNo);
-		review.setReviewLikeCnt(review.getReviewLikeCnt()+1);
+		review.setReviewLikeCnt(review.getReviewLikeCnt() + 1);
 		reviewDao.updateReview(review);
 	}
-	
+
 	@Override
 	public void updateDislikeCnt(int reviewNo) {
 		Review review = reviewDao.selectReviewByNo(reviewNo);
-		review.setReviewDislikeCnt(review.getReviewDislikeCnt()+1);
+		review.setReviewDislikeCnt(review.getReviewDislikeCnt() + 1);
 		reviewDao.updateReview(review);
 	}
 }
