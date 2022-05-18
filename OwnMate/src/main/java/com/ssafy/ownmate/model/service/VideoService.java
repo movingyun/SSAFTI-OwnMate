@@ -9,7 +9,7 @@ public interface VideoService {
 	List<Video> getVideoList(String keyword); 
 	
 	//조회수로 정렬하기
-	List<Video> getVideoByViewCnt(String keyword);
+	List<Video> getVideoByViewCnt();
 	
 	//비디오 하나 조회
 	Video getVideoById(String videoId);

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ownmate.model.dao.reviewDao">
+
+	<!-- DB와 JAVA간 객체 이름이 다른 것 통일 -->
+	<resultMap type="review" id="reviewMap">
+		<id column="review_video_id" property="reviewVideoId" />
+		<result column="review_no" property="reviewNo" />
+		<result column="review_title" property="reviewTitle" />
+		<result column="review_writer" property="reviewWriter" />
+		<result column="review_content" property="reviewContent" />
+		<result column="review_view_cnt" property="reviewViewCnt" />
+		<result column="review_like_cnt" property="reviewLikeCnt" />
+		<result column="review_dislike_cnt" property="reviewDislikeCnt" />
+		<result column="review_pw" property="reviewPw" />
+	</resultMap>
+	
+	<insert id="insertReview" parameterType="review">
+		INSERT INTO board VALUES
+		(#{reviewVideoId}, 0, #{reviewTitle}, #{reviewWriter},
+		 #{reviewContent}, 0, 0, 0, #{reviewPw})
+	</insert>
+	
+	<update id="updateReview" parameterType="review">
+		UPDATE review
+		SET
+		review_title = #{reviewTitle},
+		review_content = #{reviewContent},
+	</update>
+	
+	<delete id="deleteReview" parameterType="int">
+		DELETE FROM review WHERE review_no = #{reviewNo}
+	</delete>
+
+	<select id="selectReviewByNo" resultMap="reviewMap" parameterType="int">
+		SELECT *
+		FROM review
+		WHERE review_no = #{reviewNo}
+	</select>
+
+
+	<select id="selectReviewList" resultMap="reviewMap"
+		parameterType="java.util.HashMap">
+		SELECT *
+		FROM review
+		<if test="mode == 1">
+			WHERE review_title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="mode == 2">
+			WHERE review_content LIKE '%${keyword}%'
+		</if>
+		<if test="mode == 3">
+			WHERE review_title LIKE CONCAT('%', #{keyword}, '%')
+			OR review_content LIKE '%${keyword}%'
+		</if>
+	</select>
+</mapper>

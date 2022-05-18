@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.ssafy.ownmate.interceptor.JWTInterceptor;
+//import com.ssafy.ownmate.interceptor.JWTInterceptor;
 
 
 @Configuration
@@ -28,16 +28,16 @@ public class WebConfig  implements WebMvcConfigurer{
 				.addResourceLocations("classpath:/META-INF/resources/webjars/springfox-swagger-ui/");
 	}
 	
-	//interceptor등록
-	@Autowired
-	private JWTInterceptor jwtInterceptor;
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(jwtInterceptor)
-		//모든요청을 다 검사해
-		.addPathPatterns("/**")
-		//api/login으로 들어오는것만 빼고
-		.excludePathPatterns("/api/login");
-	}
+//	//interceptor등록
+//	@Autowired
+//	private JWTInterceptor jwtInterceptor;
+//	@Override
+//	public void addInterceptors(InterceptorRegistry registry) {
+//		registry.addInterceptor(jwtInterceptor)
+//		//모든요청을 다 검사해
+//		.addPathPatterns("/**")
+//		//api/login으로 들어오는것만 빼고
+//		.excludePathPatterns("/api/login");
+//	}
 	
 }

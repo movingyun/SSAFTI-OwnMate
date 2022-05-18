@@ -20,6 +20,11 @@ public class VideoServiceImpl implements VideoService {
 	}
 
 	@Override
+	public List<Video> getVideoByViewCnt() {
+		return videoDao.selectVideoByViewCnt();
+	}
+
+	@Override
 	public Video getVideoById(String videoId) {
 		this.updateCnt(videoId);
 		return videoDao.selectVideoById(videoId);
@@ -35,12 +40,6 @@ public class VideoServiceImpl implements VideoService {
 		Video video = videoDao.selectVideoById(videoId);
 		video.setVideoViewCnt(video.getVideoViewCnt() + 1);
 		videoDao.updateVideo(video);
-	}
-
-	@Override
-	public List<Video> getVideoByViewCnt(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
