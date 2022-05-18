@@ -10,8 +10,8 @@ public interface videoDao {
 	public List<Video> selectVideoList(HashMap<String, String> params);
 	
 	//R - id로 찾기
-	public Video selectVideoById(String video_id);
+	public Video selectVideoById(String videoId);
 	
 	//R - part로 찾기
-	public List<Video> selectPart(String part);
+	public List<Video> selectPart(String videoPart);
 }

@@ -13,11 +13,11 @@ public interface userDao {
 	public void insertUser(User user);
 	
 	//R - id로 유저 불러오기
-	public User selectUserById(int id);
+	public User selectUserById(int userId);
 	
 	//U - 유저 정보 수정
 	public int updateUser(User user);
 	
 	//D - 유저 삭제
-	public int deleteUser(int id);
+	public int deleteUser(int userId);
 }
