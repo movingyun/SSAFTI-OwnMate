@@ -1,5 +1,7 @@
 package com.ssafy.ownmate.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,5 +63,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean dropUser(String userId) {
 		return userDao.deleteUser(userId) == 1;
+	}
+
+	@Override
+	public List<User> getUserList(String keyword) {
+		return userDao.selectUserList(keyword);
 	}
 }

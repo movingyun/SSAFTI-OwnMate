@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ssafy.ownmate.model.dao.reviewDao">
+<mapper namespace="com.ssafy.ownmate.model.dao.userDao">
 
 	<!-- DB와 JAVA간 객체 이름이 다른 것 통일 -->
 	<resultMap type="user" id="userMap">
@@ -19,23 +19,22 @@
 	</resultMap>
 
 	<!-- 닉네임으로 유저 조회 -->
-	<select id="selectUserList" resultMap="reviewMap"
+	<select id="selectUserList" resultMap="userMap"
 		parameterType="String">
 		SELECT *
-		FROM user;
-		WHERE user_name LIKE CONCAT('%',
-		#{keyword}, '%')
+		FROM user
+		WHERE user_name LIKE CONCAT('%', #{keyword},'%')
 	</select>
 
 	<insert id="insertUser" parameterType="user">
 		INSERT INTO user
 		VALUES
-		(#{user_id}, #{user_pw}, #{user_name}, #{user_gym}, #{user_age},
-		#{user_exercise_career}, #{user_gender}, #{user_file_name},
-		#{user_file_uri})
+		(#{userId}, #{userPw}, #{userName}, #{userGym}, #{userAge},
+		#{userExerciseCareer}, #{userGender}, #{userFileName},
+		#{userFileUri})
 	</insert>
 
-	<select id="selectUserById" resultType="userMap"
+	<select id="selectUserById" resultMap="userMap"
 		parameterType="String">
 		SELECT *
 		FROM user
@@ -58,7 +57,7 @@
 		user_id = #{userId}
 	</delete>
 
-	<select id="checkUserName" parameterType="String"
+	<select id="checkUserId" parameterType="String"
 		resultType="int">
 		SELECT count(*) FROM user
 		WHERE user_id = #{userId}

@@ -1,5 +1,9 @@
 package com.ssafy.ownmate.model.service;
 
+import java.util.HashMap;
+import java.util.List;
+
+import com.ssafy.ownmate.model.dto.Review;
 import com.ssafy.ownmate.model.dto.User;
 
 public interface UserService {
@@ -11,7 +15,10 @@ public interface UserService {
 
 	// U - 회원정보 수정
 	boolean modifyUser(User user);
-	
+
 	// D - 회원탈퇴
 	boolean dropUser(String userId);
+
+	// 회원 조회
+	public List<User> getUserList(String keyword);
 }
