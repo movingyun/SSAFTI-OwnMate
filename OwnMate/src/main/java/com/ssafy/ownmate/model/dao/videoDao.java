@@ -8,9 +8,6 @@ public interface videoDao {
 	//video전체 가져오기
 	public List<Video> selectVideoList(String keyword);
 	
-	//video 조회순으로 가져오기
-	public List<Video> selectVideoByViewCnt();
-	
 	//R - id로 찾기
 	public Video selectVideoById(String videoId);
 	

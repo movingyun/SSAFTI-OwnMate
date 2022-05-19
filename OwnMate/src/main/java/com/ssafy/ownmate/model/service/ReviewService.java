@@ -29,4 +29,5 @@ public interface ReviewService {
 	
 	//싫어요!! 증가
 	void updateDislikeCnt(int reviewNo);
+
 }

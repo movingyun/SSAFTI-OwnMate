@@ -30,9 +30,10 @@ public class ReviewController {
 	
 	//전체 리뷰 불러오기
 	@GetMapping("/review")
-	public ResponseEntity<List<Review>> list(@RequestParam(defaultValue = "") String mode,
+	public ResponseEntity<List<Review>> list(String reviewVideoId, @RequestParam(defaultValue = "") String mode,
 			@RequestParam(defaultValue = "") String keyword) {
 		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("reviewVideoId", reviewVideoId);
 		params.put("mode", mode);
 		params.put("keyword", keyword);
 		return new ResponseEntity<List<Review>>(reviewService.getReviewList(params), HttpStatus.OK);

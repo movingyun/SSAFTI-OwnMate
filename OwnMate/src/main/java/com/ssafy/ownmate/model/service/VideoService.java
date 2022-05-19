@@ -8,9 +8,6 @@ public interface VideoService {
 	//모든비디오 조회
 	List<Video> getVideoList(String keyword); 
 	
-	//조회수로 정렬하기
-	List<Video> getVideoByViewCnt();
-	
 	//비디오 하나 조회
 	Video getVideoById(String videoId);
 
@@ -19,6 +16,4 @@ public interface VideoService {
 	
 	//조회수 올리기
 	void updateCnt(String videoId);
-	
-
 }

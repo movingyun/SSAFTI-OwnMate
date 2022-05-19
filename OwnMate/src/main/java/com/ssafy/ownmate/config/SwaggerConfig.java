@@ -34,7 +34,7 @@ public class SwaggerConfig {
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
 				.title("OwnMate Swagger")
-				.description("SSAFIT 최종 API테스트")
+				.description("OWNMATE 최종 API테스트")
 				.version("1.0")
 				.build();
 	}
