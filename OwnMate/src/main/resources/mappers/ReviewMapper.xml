@@ -40,7 +40,7 @@
 		review_no = #{reviewNo}
 	</delete>
 
-	<select id="selectReviewByNo" resultMap="reviewMap"
+	<select id="selectReviewByNo" resultType="reviewMap"
 		parameterType="int">
 		SELECT *
 		FROM review

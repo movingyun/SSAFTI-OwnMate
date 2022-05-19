@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ownmate.model.dao.reviewDao">
+
+	<!-- DB와 JAVA간 객체 이름이 다른 것 통일 -->
+	<resultMap type="user" id="userMap">
+		<id column="user_id" property="userId" />
+		<result column="user_pw" property="userPw" />
+		<result column="user_name" property="userName" />
+		<result column="user_gym" property="userGym" />
+		<result column="user_age" property="userAge" />
+		<result column="user_exercise_career"
+			property="userExerciseCareer" />
+		<result column="user_gender" property="userGender" />
+		<result column="user_file_name" property="userFileName" />
+		<result column="user_file_uri" property="userFileUri" />
+	</resultMap>
+
+	<!-- 닉네임으로 유저 조회 -->
+	<select id="selectUserList" resultMap="reviewMap"
+		parameterType="String">
+		SELECT *
+		FROM user;
+		WHERE user_name LIKE CONCAT('%',
+		#{keyword}, '%')
+	</select>
+
+	<insert id="insertUser" parameterType="user">
+		INSERT INTO user
+		VALUES
+		(#{user_id}, #{user_pw}, #{user_name}, #{user_gym}, #{user_age},
+		#{user_exercise_career}, #{user_gender}, #{user_file_name},
+		#{user_file_uri})
+	</insert>
+
+	<select id="selectUserById" resultType="userMap"
+		parameterType="String">
+		SELECT *
+		FROM user
+		WHERE user_id = #{userId}
+	</select>
+
+	<update id="updateUser" parameterType="user">
+		UPDATE user
+		SET
+		user_age =
+		#{UserAge},
+		user_exercise_career = #{UserExerciseCareer},
+		user_gender =
+		#{UserGender},
+	</update>
+
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM user
+		WHERE
+		user_id = #{userId}
+	</delete>
+
+	<select id="checkUserName" parameterType="String"
+		resultType="int">
+		SELECT count(*) FROM user
+		WHERE user_id = #{userId}
+	</select>
+
+</mapper>

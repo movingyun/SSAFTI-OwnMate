@@ -7,14 +7,11 @@ public interface UserService {
 	void join(User user) throws Exception;
 
 	// R - 로그인
-	User login(String id, String pw) throws Exception;
+	User login(String userId, String userPw) throws Exception;
 
 	// U - 회원정보 수정
 	boolean modifyUser(User user);
 	
 	// D - 회원탈퇴
-	boolean dropUser(int userId);
-	
-
-
+	boolean dropUser(String userId);
 }

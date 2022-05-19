@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void join(User user) throws Exception {
-		// id로 select해온다
+		// id로 select해온다. 아이디가 존재하면 isExistUser==1
 		int isExistUser = userDao.checkUserId(user.getUserId());
 		// id중복이 없으면 가입 가능
 		if (isExistUser == 0) {
@@ -35,11 +35,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User login(String userId, String userPw) throws Exception {
 		// id로 select해와서
-		User user = userDao.selectUserById(userId);
+		int isExistUser = userDao.checkUserId(userId);
 		// id에 해당하는 user가 없으면 오류발생
-		if (user == null)
+		if (isExistUser == 0)
 			throw new UserNotFoundException();
 		// 유저가 있는데 pw가 다르면 오류 아니면 ㄱㄱ
+		User user = userDao.selectUserById(userId);
 		if (!user.getUserPw().equals(new SHA256().getHash(userPw)))
 			throw new PWIncorrectException();
 		else
@@ -58,7 +59,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean dropUser(int userId) {
+	public boolean dropUser(String userId) {
 		return userDao.deleteUser(userId) == 1;
 	}
 }
