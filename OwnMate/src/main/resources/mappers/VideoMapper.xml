@@ -17,9 +17,9 @@
 	<!-- 전체비디오 조회 -->
 	<select id="selectVideoList" resultMap="videoMap" parameterType="String">
 		SELECT *
-		FROM video;
+		FROM video
 		WHERE video_title LIKE CONCAT('%', #{keyword}, '%')
-		ORDER BY video_viewCnt
+		ORDER BY video_view_cnt
 	</select>
 
 	<!-- 비디오아이디로 비디오 정보 가져오기 -->

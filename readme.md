@@ -10,3 +10,6 @@
 #### 1. resultMap 선언 후 resultMap 대신 resultType으로 작성
 `Cause: java.lang.ClassNotFoundException: Cannot find class: reviewMap`
  - resultType을 resultMap으로 변경하여 오류 해결
+ #### 2. pw를 uuid로 변경해서 넣어주니 데이터 길이 초과
+ `Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation:`
+ - MySQL에서 pw의 길이를 varchar(30)에서 varchar(100)으로 변경
