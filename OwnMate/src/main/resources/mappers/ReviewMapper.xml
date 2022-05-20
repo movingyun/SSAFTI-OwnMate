@@ -52,18 +52,18 @@
 		parameterType="java.util.HashMap">
 		SELECT *
 		FROM review
+		WHERE review_video_id = #{reviewVideoId}
 		<if test="mode == 1">
-			WHERE review_title LIKE CONCAT('%', #{keyword}, '%')
+			AND review_title LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="mode == 2">
-			WHERE review_content LIKE '%${keyword}%'
+			AND review_content LIKE '%${keyword}%'
 		</if>
 		<if test="mode == 3">
-			WHERE review_title LIKE CONCAT('%', #{keyword}, '%')
+			AND(review_title LIKE CONCAT('%', #{keyword}, '%')
 			OR
-			review_content LIKE '%${keyword}%'
+			review_content LIKE '%${keyword}%')
 		</if>
-		WHERE review_video_id = #{reviewVideoId}
 		ORDER BY review_no desc
 	</select>
 </mapper>
