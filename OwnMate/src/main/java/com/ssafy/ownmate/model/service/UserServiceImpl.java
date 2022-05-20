@@ -21,17 +21,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void join(User user) throws Exception {
-		// id로 select해온다. 아이디가 존재하면 isExistUser==1
-		int isExistUser = userDao.checkUserId(user.getUserId());
-		// id중복이 없으면 가입 가능
-		if (isExistUser == 0) {
-			user.setUserPw(new SHA256().getHash(user.getUserPw()));
-			userDao.insertUser(user);
-		}
-		// 중복되면 에러발생
-		else {
-			throw new IdAlreadyExistException();
-		}
+		user.setUserPw(new SHA256().getHash(user.getUserPw()));
+		userDao.insertUser(user);
 	}
 
 	@Override
@@ -48,8 +39,8 @@ public class UserServiceImpl implements UserService {
 		else
 			return user;
 	}
-	
-	//user를 어디서 갖고다니지? 세션?
+
+	// user를 어디서 갖고다니지? 세션?
 	@Override
 	public boolean modifyUser(User user) {
 		User originuser = userDao.selectUserById(user.getUserId());
@@ -68,5 +59,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getUserList(String keyword) {
 		return userDao.selectUserList(keyword);
+	}
+
+	@Override
+	public int chekId(String userId) {
+		return userDao.checkUserId(userId);
+	}
+
+	@Override
+	public User getUserById(String userId) {
+		return userDao.selectUserById(userId);
 	}
 }

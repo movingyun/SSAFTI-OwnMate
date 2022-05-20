@@ -9,6 +9,8 @@ import com.ssafy.ownmate.model.dto.User;
 public interface UserService {
 	// C - 회원가입
 	void join(User user) throws Exception;
+	
+
 
 	// R - 로그인
 	User login(String userId, String userPw) throws Exception;
@@ -21,4 +23,11 @@ public interface UserService {
 
 	// 회원 조회
 	public List<User> getUserList(String keyword);
+	
+	public User getUserById(String userId);
+	
+	//회원 몇 명 있나?
+	public int chekId(String userId);
+	
+
 }
