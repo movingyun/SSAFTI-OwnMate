@@ -16,4 +16,7 @@ public interface VideoService {
 	
 	//조회수 올리기
 	void updateCnt(String videoId);
+	
+	//상위 3개 비디오 조회
+	List<Video> getVideoListTop3();
 }

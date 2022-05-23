@@ -16,4 +16,7 @@ public interface videoDao {
 	
 	//U -video수정(조회수 증가)
 	public int updateVideo(Video video);
+	
+	//조회수 top3 비디오 가져오기
+	public List<Video> selectVideoListTop3();
 }

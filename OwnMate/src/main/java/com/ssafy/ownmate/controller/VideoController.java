@@ -34,7 +34,10 @@ public class VideoController {
 		return new ResponseEntity<Video>(videoService.getVideoById(videoId), HttpStatus.OK);
 	}
 	
-	
+	@GetMapping("/video3")
+	public ResponseEntity<List<Video>> toplist(){
+		return new ResponseEntity<List<Video>>(videoService.getVideoListTop3(), HttpStatus.OK);
+	}
 	
 
 }

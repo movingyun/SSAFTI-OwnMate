@@ -37,4 +37,9 @@ public class VideoServiceImpl implements VideoService {
 		videoDao.updateVideo(video);
 	}
 
+	@Override
+	public List<Video> getVideoListTop3() {
+		return videoDao.selectVideoListTop3();
+	}
+
 }
