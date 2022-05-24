@@ -44,18 +44,23 @@ public class UserController {
 
 	// 로그인
 	@PostMapping("/login")
-	public ResponseEntity<Map<String, Object>> login(@RequestBody User user) {
+	public ResponseEntity<Map<String, Object>> login(String userId, String userPw) {
 		HttpStatus status = null;
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		try {
-			User originUser = userService.getUserById(user.getUserId());
-			if (originUser.getUserPw().equals(new SHA256().getHash(user.getUserPw()))) {
-				// id정보가있는 토큰 생성
-				result.put("access-token", jwtUtil.createToken("id", user.getUserId()));
-				result.put("message", SUCCESS);
-				status = HttpStatus.ACCEPTED;
+			if (userService.chekId(userId) == 1) {
+				User originUser = userService.getUserById(userId);
+				if (originUser.getUserPw().equals(new SHA256().getHash(userPw))) {
+					// id정보가있는 토큰 생성
+					result.put("access-token", jwtUtil.createToken("id", userId));
+					result.put("message", SUCCESS);
+					status = HttpStatus.ACCEPTED;
+				} else {
+					// 비밀번호가 틀리면 fail전송
+					result.put("message", FAIL);
+					status = HttpStatus.BAD_REQUEST;
+				}
 			} else {
-				//비밀번호가 틀리면 fail전송
 				result.put("message", FAIL);
 				status = HttpStatus.BAD_REQUEST;
 			}
@@ -68,30 +73,14 @@ public class UserController {
 
 	// 회원가입
 	@PostMapping("/join")
-	public String join(User user, MultipartFile upload_file) throws Exception {
+	public ResponseEntity<String> join(User user, MultipartFile upload_file) throws Exception {
 		int num = userService.chekId(user.getUserId());
 		// 이미 아이디가 존재할때
-		if (num != 0) {
-			return "redirect:/api/join";
+		if (num == 0) {
+			userService.join(user);
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
-		if (upload_file.getSize() != 0) {
-			String uploadPath = servletContext.getRealPath("/file");
-			String fileName = upload_file.getOriginalFilename();
-			String saveName = UUID.randomUUID() + "";
-			File target = new File(uploadPath, saveName);
-			if (!new File(uploadPath).exists())
-				new File(uploadPath).mkdirs();
-			try {
-				FileCopyUtils.copy(upload_file.getBytes(), target);
-				user.setUserFileName(fileName);
-				user.setUserFileUri(target.getCanonicalPath());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		userService.join(user);
-		return SUCCESS;
+		return new ResponseEntity<String>(FAIL, HttpStatus.CONFLICT);
 	}
 
 	// 회원정보 수정
@@ -104,7 +93,7 @@ public class UserController {
 	// 회원 탈퇴
 	@DeleteMapping("/user/{userId}")
 	public ResponseEntity<String> delete(@PathVariable String userId) {
-		//dropUser가 가능하면
+		// dropUser가 가능하면
 		if (userService.dropUser(userId)) {
 			userService.dropUser(userId);
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
