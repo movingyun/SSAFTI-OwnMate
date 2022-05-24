@@ -44,6 +44,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean modifyUser(User user) {
 		User originuser = userDao.selectUserById(user.getUserId());
+		originuser.setUserName(user.getUserName());
+		originuser.setUserGym(user.getUserGym());
 		originuser.setUserAge(user.getUserAge());
 		originuser.setUserExerciseCareer(user.getUserExerciseCareer());
 		originuser.setUserGender(user.getUserGender());

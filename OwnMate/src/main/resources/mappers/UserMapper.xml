@@ -44,11 +44,12 @@
 	<update id="updateUser" parameterType="user">
 		UPDATE user
 		SET
-		user_age =
-		#{UserAge},
-		user_exercise_career = #{UserExerciseCareer},
-		user_gender =
-		#{UserGender},
+		user_name =  #{userName},
+		user_gym = #{userGym},
+		user_age = #{userAge},
+		user_exercise_career = #{userExerciseCareer},
+		user_gender = #{userGender}
+		WHERE user_id = #{userId}
 	</update>
 
 	<delete id="deleteUser" parameterType="String">
