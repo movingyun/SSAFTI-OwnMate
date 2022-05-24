@@ -52,6 +52,20 @@ public class ReviewController {
 		return new ResponseEntity<Review>(reviewService.getReviewByNo(reviewNo), HttpStatus.OK);
 	}
 	
+	//리뷰 좋아요
+	@GetMapping("/review/like/{reviewNo}")
+	public ResponseEntity<String> like(@PathVariable int reviewNo) {
+		reviewService.updateLikeCnt(reviewNo);
+		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+	}
+	
+	//리뷰 싫어요
+	@GetMapping("/review/dislike/{reviewNo}")
+	public ResponseEntity<String> dislike(@PathVariable int reviewNo) {
+		reviewService.updateDislikeCnt(reviewNo);
+		return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+	}
+	
 	//리뷰 삭제
 	@DeleteMapping("/review/{reviewNo}")
 	public ResponseEntity<String> delete(@PathVariable int reviewNo){

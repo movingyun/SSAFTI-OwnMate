@@ -52,7 +52,6 @@ public class ReviewServiceImpl implements ReviewService {
 		reviewDao.updateReview(review);
 	}
 
-//	이걸 어디서 사용할지 고민해보자!!!
 	@Override
 	public void updateLikeCnt(int reviewNo) {
 		Review review = reviewDao.selectReviewByNo(reviewNo);
