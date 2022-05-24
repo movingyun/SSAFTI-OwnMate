@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ssafy.ownmate.model.dto.Review;
 import com.ssafy.ownmate.model.dto.User;
 import com.ssafy.ownmate.model.service.UserService;
 import com.ssafy.ownmate.util.JWTUtil;
@@ -69,6 +70,12 @@ public class UserController {
 			status = HttpStatus.NO_CONTENT;
 		}
 		return new ResponseEntity<Map<String, Object>>(result, status);
+	}
+	
+	//유저 상세보기
+	@GetMapping("/user/{userId}")
+	public ResponseEntity<User> detail(@PathVariable String userId) {
+		return new ResponseEntity<User>(userService.getUserById(userId), HttpStatus.OK);
 	}
 
 	// 회원가입
