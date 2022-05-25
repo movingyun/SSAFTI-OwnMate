@@ -108,7 +108,7 @@ public class UserController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 
-	// 회원 조회
+	// 회원 조회하기
 	@GetMapping("/user")
 	public ResponseEntity<List<User>> searchUser(@RequestParam(defaultValue = "") String keyword) {
 		return new ResponseEntity<List<User>>(userService.getUserList(keyword), HttpStatus.OK);
