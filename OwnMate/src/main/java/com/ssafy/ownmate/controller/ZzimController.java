@@ -49,7 +49,7 @@ public class ZzimController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 	
-	//찜 등록
+	//찜 등록하기
 	@PostMapping("/zzim")
 	public ResponseEntity<String> write(Zzim zzim) {
 		zzimService.addZzim(zzim);
