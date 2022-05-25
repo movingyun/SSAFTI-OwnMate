@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class Zzim {
 	private int zzimNo;
 	private String zzimUserId;
+	private String zzimVideoId;
 }

@@ -9,11 +9,11 @@ public interface ZzimService {
 	public List<Zzim> getZzimList();
 	
 	//유저가 찜한거 하나 조회
-	public Zzim getZzimByUser(String userId);
+	public List<Zzim> getZzimByUser(String userId);
 	
 	//찜 등록
 	public void addZzim(Zzim zzim);
 	
 	//찜 삭제
-	public int deleteZzim(int zzimNo);
+	public boolean deleteZzim(int zzimNo);
 }

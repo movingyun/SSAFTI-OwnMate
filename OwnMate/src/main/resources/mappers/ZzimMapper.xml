@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ownmate.model.dao.zzimDao">
+
+	<!-- DB와 JAVA간 객체 이름이 다른 것 통일 -->
+	<resultMap type="zzim" id="zzimMap">
+		<id column="zzim_no" property="zzimNo" />
+		<result column="zzim_user_id" property="zzimUserId" />
+		<result column="zzim_video_id" property="zzimVideoId" />
+	</resultMap>
+
+	<insert id="insertZzim" parameterType="zzim">
+		INSERT INTO zzim
+		VALUES
+		(0, #{zzimUserId}, #{zzimVideoId})
+	</insert>
+
+	<delete id="deleteZzim" parameterType="int">
+		DELETE FROM zzim WHERE
+		zzim_no = #{zzimNo}
+	</delete>
+
+	<select id="selectZzimByUser" resultMap="zzimMap"
+		parameterType="String">
+		SELECT *
+		FROM zzim
+		WHERE zzim_user_id = #{zzimUserId}
+	</select>
+
+	<select id="selectZzimList" resultMap="zzimMap">
+		SELECT *
+		FROM zzim
+	</select>
+</mapper>

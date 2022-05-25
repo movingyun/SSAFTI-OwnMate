@@ -8,8 +8,8 @@ public interface zzimDao {
 	//찜 목록
 	public List<Zzim> selectZzimList();
 	
-	//유저가 찜한거 하나 조회
-	public Zzim selectZzimByUser(String userId);
+	//유저가 찜한것들 조회
+	public List<Zzim> selectZzimByUser(String userId);
 	
 	//찜 등록
 	public void insertZzim(Zzim zzim);
