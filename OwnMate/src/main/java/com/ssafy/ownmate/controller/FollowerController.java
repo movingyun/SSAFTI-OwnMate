@@ -49,7 +49,19 @@ public class FollowerController {
 	//팔로워 등록하기
 	@PostMapping("/follower")
 	public ResponseEntity<String> write(Follower follower) {
-		followerService.addFollower(follower);
-		return new ResponseEntity<String>(SUCCESS, HttpStatus.CREATED);
+		List<Follower> followerList = followerService.getFollowerList();
+		int flag = 0;
+		for(Follower f : followerList) {
+			if(f.getFollowerTargetId().equals(follower.getFollowerTargetId())&&f.getFollowerUserId().equals(follower.getFollowerUserId())) {
+				flag = 1;
+			}
+		}
+		if(flag == 1) {
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		}
+		else {
+			followerService.addFollower(follower);
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.CREATED);
+		}
 	}
 }
