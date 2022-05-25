@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ownmate.model.dao.followerDao">
+
+	<!-- DB와 JAVA간 객체 이름이 다른 것 통일 -->
+	<resultMap type="follower" id="followerMap">
+		<id column="follower_no" property="followerNo" />
+		<result column="follower_user_id" property="followerUserId" />
+		<result column="follower_target_id" property="followerTargetId" />
+	</resultMap>
+
+	<insert id="insertFollower" parameterType="follower">
+		INSERT INTO follower
+		VALUES
+		(0, #{followerUserId}, #{followerTargetId})
+	</insert>
+
+	<delete id="deleteFollower" parameterType="int">
+		DELETE FROM follower WHERE
+		follower_no = #{followerNo}
+	</delete>
+
+	<select id="selectFollowerById" resultMap="followerMap"
+		parameterType="String">
+		SELECT *
+		FROM follower
+		WHERE follower_user_id = #{followerUserId}
+	</select>
+
+	<select id="selectFollowerList" resultMap="followerMap">
+		SELECT *
+		FROM follower
+	</select>
+</mapper>

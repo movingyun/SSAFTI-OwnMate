@@ -10,11 +10,11 @@ public interface followerDao {
 	public List<Follower> selectFollowerList();
 	
 	//팔로워 하나 조회
-	public Follower selectFollowerById(int userId);
+	public List<Follower> selectFollowerById(String userId);
 	
 	//팔로워 등록
 	public void insertFollower(Follower follower);
 	
 	//팔로워 삭제
-	public int deleteFollower(int userId);
+	public int deleteFollower(int followerNo);
 }
